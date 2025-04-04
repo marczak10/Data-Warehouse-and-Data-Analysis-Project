@@ -186,7 +186,7 @@ BEGIN
 			CASE
 				WHEN UPPER(TRIM(gen)) IN ('F', 'FEMALE') THEN 'Female'
 				WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
-				ELSE 'n/a'
+				ELSE 'Unknown'
 			END AS gen -- Normalize gender values and handle unknown cases
 		FROM bronze.erp_cust_az12;
 	    SET @end_time = GETDATE();
@@ -212,7 +212,7 @@ BEGIN
 			CASE
 				WHEN TRIM(cntry) = 'DE' THEN 'Germany'
 				WHEN TRIM(cntry) IN ('US', 'USA') THEN 'United States'
-				WHEN TRIM(cntry) = '' OR cntry IS NULL THEN 'n/a'
+				WHEN TRIM(cntry) = '' OR cntry IS NULL THEN 'Unknown'
 				ELSE TRIM(cntry)
 			END AS cntry -- Normalize and Handle missing or blank country codes
 		FROM bronze.erp_loc_a101;
