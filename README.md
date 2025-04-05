@@ -1,2 +1,2 @@
-# SQL-Data-Warehouse-Project
+# SQL Data Warehouse and Data Analytics Project
 MAKE THIS FILE
