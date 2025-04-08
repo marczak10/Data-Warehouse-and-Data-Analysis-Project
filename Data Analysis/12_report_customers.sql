@@ -48,7 +48,7 @@ SELECT
 	DATEDIFF(YEAR, dc.birthdate, GETDATE()) AS age
 FROM gold.fact_sales fs
 LEFT JOIN gold.dim_customers dc ON fs.customer_key = dc.customer_key
-WHERE order_date IS NOT NULL
+WHERE order_date IS NOT NULL  -- only consider valid sales dates
 )
 
 -- =============================================================================
@@ -104,10 +104,12 @@ SELECT
 	last_order_date,
 	DATEDIFF(month, last_order_date, GETDATE()) AS recency,
 	lifespan,
+	-- Compuate average order value (AVO)
 	CASE 
 		WHEN total_sales = 0 THEN 0
 		ELSE total_sales / total_orders
 	END AS avg_order_value,
+	-- Compuate average monthly spend
 	CASE 
 		WHEN lifespan = 0 THEN total_sales
 		ELSE total_sales / lifespan
