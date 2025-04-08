@@ -46,7 +46,7 @@ SELECT
 	dp.cost
 FROM gold.fact_sales fs
 LEFT JOIN gold.dim_products dp ON fs.product_key = dp.product_key
-WHERE fs.order_date IS NOT NULL
+WHERE fs.order_date IS NOT NULL  -- only consider valid sales dates
 )
 
 /*---------------------------------------------------------------------------  
@@ -91,10 +91,12 @@ SELECT
 	total_quantity,
 	total_customers,
 	avg_selling_price,
+	-- Average Order Revenue (AOR)
 	CASE 
 		WHEN total_orders = 0 THEN 0
 		ELSE total_sales / total_orders
 	END AS avg_order_revenue,
+	-- Average Monthly Revenue
 	CASE
 		WHEN lifespan = 0 THEN total_sales
 		ELSE total_sales / lifespan
