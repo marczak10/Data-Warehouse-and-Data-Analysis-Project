@@ -65,6 +65,32 @@ These efforts help stakeholders access key business metrics and gain strategic i
 
 ---
 
+## 📊 Reports & Dashboards
+
+Here are two sample dashboards you created to visualize key metrics and insights. These examples demonstrate the types of interactive reports available in this project. For more details, see the `reports/` folder and the `PowerBI/` directory.
+
+### 1) Customer Dashboard
+
+![Customer Dashboard](./reports/CustomerDashboard.png)
+
+This dashboard provides:
+- Total Customers, Orders, and Revenue
+- Breakdown of customers by country, age group, and segment
+- Detailed visualizations of sales by country, age group, and segment
+- Top 10 customers based on total sales
+
+### 2) Product Dashboard
+
+![Product Dashboard](./reports/ProductDashboard.png)
+
+This dashboard showcases:
+- Product-level metrics, including total products, orders, and average revenue per product
+- Product segmentation by various categories and lines
+- Sales by segment, age group, and category
+- Top 10 products with their sales and orders
+
+---
+
 ## 🛡️ License
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
