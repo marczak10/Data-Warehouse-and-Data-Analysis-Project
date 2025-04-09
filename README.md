@@ -69,7 +69,7 @@ These efforts help stakeholders access key business metrics and gain strategic i
 
 Below are the two PowerBI dashboards created during this project.
 
-### 1) Customer Dashboard
+### 1) 
 
 ![Customer Dashboard](Data%20Analysis/reports/Customer%20Dashboard.png)
 
@@ -79,7 +79,7 @@ This dashboard provides:
 - Detailed visualizations of sales by country, age group, and segment
 - Top 10 customers based on total sales
 
-### 2) Product Dashboard
+### 2) 
 
 ![Product Dashboard](Data%20Analysis/reports/Product%20Dashboard.png)
 
