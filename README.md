@@ -67,11 +67,11 @@ These efforts help stakeholders access key business metrics and gain strategic i
 
 ## 📊 Reports & Dashboards
 
-Here are two sample dashboards you created to visualize key metrics and insights. These examples demonstrate the types of interactive reports available in this project. For more details, see the `reports/` folder and the `PowerBI/` directory.
+Below are the two PowerBI dashboards created during this project.
 
 ### 1) Customer Dashboard
 
-![Customer Dashboard](Data%20Analysis/reports/Customer Dashboard.png)
+![Customer Dashboard](Data%20Analysis/reports/Customer%20Dashboard.png)
 
 This dashboard provides:
 - Total Customers, Orders, and Revenue
@@ -81,7 +81,7 @@ This dashboard provides:
 
 ### 2) Product Dashboard
 
-![Product Dashboard](Data%20Analysis/reports/Product Dashboard.png)
+![Product Dashboard](Data%20Analysis/reports/Product%20Dashboard.png)
 
 This dashboard showcases:
 - Product-level metrics, including total products, orders, and average revenue per product
