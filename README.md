@@ -71,7 +71,7 @@ Here are two sample dashboards you created to visualize key metrics and insights
 
 ### 1) Customer Dashboard
 
-![Customer Dashboard](./reports/CustomerDashboard.png)
+![Customer Dashboard](Data%20Analysis/reports/Customer Dashboard.png)
 
 This dashboard provides:
 - Total Customers, Orders, and Revenue
@@ -81,7 +81,7 @@ This dashboard provides:
 
 ### 2) Product Dashboard
 
-![Product Dashboard](./reports/ProductDashboard.png)
+![Product Dashboard](Data%20Analysis/reports/Product Dashboard.png)
 
 This dashboard showcases:
 - Product-level metrics, including total products, orders, and average revenue per product
