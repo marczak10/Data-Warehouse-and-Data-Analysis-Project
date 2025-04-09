@@ -45,10 +45,13 @@ SELECT
 	dc.first_name,
 	dc.last_name,
 	CONCAT(dc.first_name, ' ', dc.last_name) AS customer_name,
-	DATEDIFF(YEAR, dc.birthdate, GETDATE()) AS age
+	DATEDIFF(YEAR, dc.birthdate, GETDATE()) AS age,
+	dc.gender,
+	dc.marital_status,
+	dc.country
 FROM gold.fact_sales fs
 LEFT JOIN gold.dim_customers dc ON fs.customer_key = dc.customer_key
-WHERE order_date IS NOT NULL  -- only consider valid sales dates
+WHERE order_date IS NOT NULL
 )
 
 -- =============================================================================
@@ -60,6 +63,9 @@ SELECT
 	customer_number,
 	customer_name,
 	age,
+	gender,
+	marital_status,
+	country,
 	COUNT(DISTINCT order_number) AS total_orders,
 	SUM(sales_amount) AS total_sales,
 	SUM(quantity) AS total_quantity,
@@ -67,7 +73,7 @@ SELECT
 	MAX(order_date) AS last_order_date,
 	DATEDIFF(MONTH, MIN(order_date), MAX(order_date)) AS lifespan
 FROM base_query
-GROUP BY customer_key, customer_number, customer_name, age
+GROUP BY customer_key, customer_number, customer_name, age, gender, marital_status, country
 )
 
 -- =============================================================================
@@ -85,6 +91,9 @@ SELECT
 	customer_number, 
 	customer_name, 
 	age,
+	gender,
+	marital_status,
+	country,
 	CASE 
 		 WHEN age < 20 THEN '< 20'
 		 WHEN age between 20 and 29 THEN '20-29'
@@ -104,12 +113,10 @@ SELECT
 	last_order_date,
 	DATEDIFF(month, last_order_date, GETDATE()) AS recency,
 	lifespan,
-	-- Compuate average order value (AVO)
 	CASE 
 		WHEN total_sales = 0 THEN 0
 		ELSE total_sales / total_orders
 	END AS avg_order_value,
-	-- Compuate average monthly spend
 	CASE 
 		WHEN lifespan = 0 THEN total_sales
 		ELSE total_sales / lifespan

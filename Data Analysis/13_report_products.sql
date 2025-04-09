@@ -43,10 +43,12 @@ SELECT
 	dp.product_name,
 	dp.category,
 	dp.subcategory,
+	dp.product_line,
+	dp.maintenance,
 	dp.cost
 FROM gold.fact_sales fs
 LEFT JOIN gold.dim_products dp ON fs.product_key = dp.product_key
-WHERE fs.order_date IS NOT NULL  -- only consider valid sales dates
+WHERE fs.order_date IS NOT NULL
 )
 
 /*---------------------------------------------------------------------------  
@@ -58,6 +60,8 @@ SELECT
 	product_name,
 	category,
 	subcategory,
+	product_line,
+	maintenance,
 	cost,
 	DATEDIFF(MONTH, MIN(order_date), MAX(order_date)) AS lifespan,
     MAX(order_date) AS last_sale_date,
@@ -67,16 +71,19 @@ SELECT
     SUM(quantity) AS total_quantity,
 	ROUND(AVG(CAST(sales_amount AS FLOAT) / NULLIF(quantity, 0)),1) AS avg_selling_price
 FROM base_query
-GROUP BY product_key, product_name, category, subcategory, cost
+GROUP BY product_key, product_name, category, subcategory, product_line, maintenance, cost
 )
+
 /*---------------------------------------------------------------------------  
 3) Final Query: Combines all product results into one output  
 ---------------------------------------------------------------------------*/
-SELECT 
+SELECT
 	product_key,
 	product_name,
 	category,
 	subcategory,
+	product_line,
+	maintenance,
 	cost,
 	last_sale_date,
 	DATEDIFF(MONTH, last_sale_date, GETDATE()) AS recency_in_months,
@@ -91,12 +98,10 @@ SELECT
 	total_quantity,
 	total_customers,
 	avg_selling_price,
-	-- Average Order Revenue (AOR)
 	CASE 
 		WHEN total_orders = 0 THEN 0
 		ELSE total_sales / total_orders
 	END AS avg_order_revenue,
-	-- Average Monthly Revenue
 	CASE
 		WHEN lifespan = 0 THEN total_sales
 		ELSE total_sales / lifespan
